@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { uiOpenModal } from '../../actions/ui';
+
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
@@ -28,10 +31,15 @@ const events = [{
 
 export const CalendarScreen = () => {
 
+  const dispatch = useDispatch();
+  //const { modalOpen } = useSelector( state => state.ui );
+  
+
   const [ lastView, setLastView ] = useState( localStorage.getItem('lastView') || 'month' );
 
-  const onDoubleClick = (e) => {
-    console.log(e);
+  const onDoubleClick = () => {
+    console.log('abrir modal');
+    dispatch( uiOpenModal() );
   }
 
   const onSelectEvent = (e) => {
