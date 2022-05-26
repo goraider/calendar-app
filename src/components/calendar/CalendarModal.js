@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { uiCloseModal } from '../../actions/ui';
+import { eventAddNew } from '../../actions/events';
 
 import Modal from 'react-modal';
 import moment from 'moment';
@@ -90,6 +91,18 @@ export const CalendarModal = () => {
         if( title.trim().length < 2 ){
             return setTitleValid(false);
         }
+
+        //TODO: Guardar
+        dispatch( eventAddNew({
+           ...formValues,
+           id: new Date().getTime(),
+           user: {
+               _id: '123',
+               name: 'Fernando'
+           }
+        }) );
+
+        console.log("wtf",formValues);
 
         setTitleValid(true);
         closeModal();
